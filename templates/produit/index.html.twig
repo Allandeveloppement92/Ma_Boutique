@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+
+    
+
+    <h1>Listes des produits</h1>
+
+    <br/>
+    
+    {% if produits is not empty %}
+        
+        <table border="1" class="container">
+            <thread>
+                <tr>
+                    <th>Photo</th>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                </tr>
+            </thread>
+            <tbody>
+                {% for un_produit in produits %}
+                    <tr>
+                        
+                        <td>
+                            <img src="{{asset('/uploads/'~ un_produit.photo)}}">
+                        </td>
+                        <td>
+                            <a href="{{ path('mon_produit', {'id': un_produit.id}) }}"> <!-- "path" = direction-->
+                                {{ un_produit.nom }}
+                            </a>
+                        </td>
+                        <td>{{ un_produit.quantite }}</td>
+                        <td>{{ un_produit.prix }}€</td>
+                    </tr> <!--Afficher la liste-->
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Inserer un produit</p>
+    {% endif %}
+
+    <br/>
+    <br/>
+
+    <h2>Ajouter un produit</h2>
+    <br/>
+    {{ form(form_produit_new) }} <!--Afficher le formulaire du produit-->
+{% endblock %}
