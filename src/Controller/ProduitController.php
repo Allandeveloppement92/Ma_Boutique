@@ -119,11 +119,11 @@ class ProduitController extends AbstractController
             $this-> addFlash("danger", "Produit introuvable");
         }
 
+        if ($produit->getPhoto() != null) {
+            unlink($this->getParameter('upload_dir') . $produit->getPhoto());
+        }
+
         return $this->redirectToRoute('home');
     }
 }
 // "::"accéder aux membres static ou constant, ainsi qu'aux propriétés ou méthodes surchargées d'une classe.
-
-
-
-
