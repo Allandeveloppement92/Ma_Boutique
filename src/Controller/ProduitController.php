@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route; // permet de lire les anotations
-use App\Entity\Produit; //On importe l'élément
+use App\Entity\Produit;//On importe l'élément
+use App\Entity\Panier;
+use App\Form\PanierType;
 use App\Form\ProduitType; //Importation du formulaire
 use Symfony\Component\HttpFoundation\Request;
 
@@ -75,16 +77,16 @@ class ProduitController extends AbstractController
     * @Route("/produit/{id}", name="mon_produit")
     */
 
-    public function produit(Request $request, Produit $produit=null){ //Création d'une méthods
+    public function produit(Request $request, Produit $produit=null){ //Création d'une méthode
 
         if($produit !=null){
-            //Vérifie si produit est affilié à un ID
-            $form = $this->createForm(ProduitType::class, $produit);
+            $panier=new Panier($produit);
+            $form = $this->createForm(PanierType::class, $panier);
             $form->handleRequest($request);
 
                 if($form->isSubmitted() && $form->isValid()){
                     $pdo = $this->getDoctrine()->getManager();
-                    $pdo->persist($produit);
+                    $pdo->persist($panier);
                     $pdo->flush();
                 }
 
@@ -100,6 +102,7 @@ class ProduitController extends AbstractController
         }
 
     }
+
 
      /**
      * @Route("/produit/delete/{id}", name="delete_produit")
@@ -120,4 +123,7 @@ class ProduitController extends AbstractController
     }
 }
 // "::"accéder aux membres static ou constant, ainsi qu'aux propriétés ou méthodes surchargées d'une classe.
+
+
+
 

@@ -1,20 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Panier</h1>
+    <br/>
+    <h2>Mes Produits</h2>
+    <br/>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {% if panier is not empty %}
+    {# {{dump(panier)}} #}
+         <table class="table" class="container">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Montant (par rapport à la quantité)</th>
+                    <th>Ce produit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in panier %}
+                    <tr>
+                        <td>{{ article.produit.nom }}</td>
+                        <td>{{ article.quantiteco }}</td>
+                        <td>{{ (article.produit.prix) * (article.quantiteco) }}€</td>
+                        <td>
+                            <button  style="background-color:red ; border-radius:5px;">
+                                <a href="{{ path('delete_produit_panier', {'id': article.id}) }}" style="color:white; text-decoration:none;" >
+                                    Supprimer
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+        {% else %} 
+        <p>Votre panier est vide</p>
+    {% endif %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Allan Germé/Desktop/Symfony/eval_symfony/src/Controller/PanierController.php'|file_link(0) }}">src/Controller/PanierController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Allan Germé/Desktop/Symfony/eval_symfony/templates/panier/index.html.twig'|file_link(0) }}">templates/panier/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <span style=" background-color:#707173; color:white; font-weight:bold; border-radius:2px;"> {{panier | length}} produit(s) </span>
+   
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    <h2>Total TTC</h2>
+    
+    {% set total_panier = 0 %} 
+    {% set quantite_panier = 0 %}
+
+        {% for article in panier %}
+            {# {% if panier.etat == false %}   #}
+                {% set total_panier = total_panier + (article.produit.prix * article.quantiteco) %}
+            {# {% endif %} #}
+        {% endfor %}
+
+    <p style="font-size:20px;">Le montant du panier s'élève à  <span style="font-weight:bold; font-size: 25px;" >{{ total_panier }}€</span>.</p>
+
 {% endblock %}
+
+{# commentaire dans le language adequate #}
+

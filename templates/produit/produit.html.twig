@@ -8,20 +8,23 @@
 
     <br/>  
 
-    <p> <img src="{{asset('/uploads/'~ produit.photo)}}"> </p>
+    <p> <img src="{{asset('/uploads/'~ produit.photo)}}" style="border-radius:20px;"> </p>
     <p> Quantité : {{produit.quantite}} </p>
     <p> Prix : {{produit.prix}}€ </p>
 
     <br/>
 
     <h2>Ajouter au panier</h2>
+
+    <br/>
+
+    {{ form(form) }}
+    
     
 
-    <button>
-         <a href="{{ path('delete_produit', {'id': produit.id}) }}">
-            Supprimer
-         </a>
-    <button/>
+    <button  style="background-color:red ; border-radius:5px; "><a href="{{ path('delete_produit', {'id': produit.id}) }}" style="color:white; text-decoration:none;" >Supprimer</a></button>
     
+    <br/>
+    <br/>
 
 {% endblock %}

@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
@@ -23,6 +26,7 @@ class Panier
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotNull
      */
     private $date_ajout;
 
@@ -35,6 +39,12 @@ class Panier
      * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="paniers")
      */
     private $produit;
+
+    public function __construct($produit){
+        $this->setProduit($produit);
+        $this->setDateAjout(new \DateTime);
+        $this->setEtat(false);
+    }
 
     public function getId(): ?int
     {
