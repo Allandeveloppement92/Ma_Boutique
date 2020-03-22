@@ -9,6 +9,7 @@ use App\Entity\Panier;
 use App\Form\PanierType;
 use App\Form\ProduitType; //Importation du formulaire
 use Symfony\Component\HttpFoundation\Request;
+use App\Controller\FileException;
 
 
 class ProduitController extends AbstractController
