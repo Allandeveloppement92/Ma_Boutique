@@ -9,8 +9,8 @@
     <br/>  
 
     <p> <img src="{{asset('/uploads/'~ produit.photo)}}" style="border-radius:20px;"> </p>
-    <p> Quantité : {{produit.quantite}} </p>
-    <p> Prix : {{produit.prix}}€ </p>
+    <p style="font-size:20px;"> Quantité : {{produit.quantite}} </p>
+    <p style="font-size:20px;"> Prix : {{produit.prix}}€ </p>
 
     <br/>
 
@@ -22,7 +22,7 @@
     
     
 
-    <button  style="background-color:red ; border-radius:5px; "><a href="{{ path('delete_produit', {'id': produit.id}) }}" style="color:white; text-decoration:none;" >Supprimer</a></button>
+    <button  style="background-color:red ; border-radius:5px; "><a href="{{ path('delete_produit', {'id': produit.id}) }}" style="color:white; text-decoration:none;" >Supprimer le produit</a></button>
     
     <br/>
     <br/>

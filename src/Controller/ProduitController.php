@@ -2,45 +2,41 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route; // permet de lire les anotations
-use App\Entity\Produit;//On importe l'élément
+
+use App\Entity\Produit;
 use App\Entity\Panier;
 use App\Form\PanierType;
-use App\Form\ProduitType; //Importation du formulaire
-use Symfony\Component\HttpFoundation\Request;
+use App\Form\ProduitType; 
 use App\Controller\FileException;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class ProduitController extends AbstractController
 {   
     
     /**
-     * @Route("/", name="home") 
+     * @Route("/produit", name="produit") 
      */
     public function index(Request $request)
-    //$request appartient à la class Request, c'est un objet de Request
     {   
-        //Récupère Doctrine (service de gestion de BDD)
+        
         $pdo = $this->getDoctrine()->getManager();
-        //Il est responsable de l'enregistrement des objets et de leur récupération dans la base de données.
 
         
         $produit=new Produit();
-        //Création d'un form
+        
         $form = $this->createForm(ProduitType::class, $produit);
         
-        //Analyse la requête HTTP
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid() ){
-            //Le formulaire à été envoyé, on le sauvegarde
-            //On récupère le fichier du formulaire
+            
             $fichier = $form->get('photo')->getData();
-            //Si un fichier à été uploadé
+           
 
             if($fichier){
                 $nomFichier = uniqid().'.'. $fichier->guessExtension();
-                //génère une chaine de caractère unique qui donnera le nom du fichier
 
                 try{
                     $fichier->move(
@@ -50,27 +46,24 @@ class ProduitController extends AbstractController
                 }
                 catch(FileException $e){
                     $this->addFlash("danger","Le fichier n'a pas pu être téléversé");
-                    return $this->redirectToRoute('home');
+                    return $this->redirectToRoute('produit');
                 }
 
                 $produit->setPhoto($nomFichier);
             }
 
-            $pdo->persist($produit); //prepare et enregistre le produit 
-            $pdo->flush();            //execute celui-ci
+            $pdo->persist($produit); 
+            $pdo->flush();           
+
+            $this-> addFlash("success", "Produit ajouté à la liste"); 
         }
 
-        //Récupère tous les produits 
+        
         $produits = $pdo->getRepository(Produit::class)->findAll();
-
 
         return $this->render('produit/index.html.twig', [
             'produits' => $produits,
             'form_produit_new'=>$form->createView()
-            // "=>" Pour un tableau associatif 
-            //"->" Pour un objet: la flèche va récupérer quelque chose à l'intérieur d'un objet
-            //https://www.youtube.com/watch?v=xmoOvoiPNhU
-            //https://www.youtube.com/user/grafikarttv/playlists
         ]);
     }
 
@@ -78,7 +71,7 @@ class ProduitController extends AbstractController
     * @Route("/produit/{id}", name="mon_produit")
     */
 
-    public function produit(Request $request, Produit $produit=null){ //Création d'une méthode
+    public function produit(Request $request, Produit $produit=null){ 
 
         if($produit !=null){
             $panier=new Panier($produit);
@@ -89,6 +82,8 @@ class ProduitController extends AbstractController
                     $pdo = $this->getDoctrine()->getManager();
                     $pdo->persist($panier);
                     $pdo->flush();
+
+                    $this-> addFlash("success", "Produit ajouté au panier"); 
                 }
 
             return $this->render('produit/produit.html.twig',[
@@ -96,11 +91,14 @@ class ProduitController extends AbstractController
                 'form' => $form->createView()
             ]);
 
+
         }
         else{
-            $this-> addFlash("danger", "Catégorie introuvable");
-            return $this->redirectToRoute('home');
+            $this-> addFlash("danger", "Produit introuvable");
+           
         }
+
+        return $this->redirectToRoute('produit');
 
     }
 
@@ -108,13 +106,13 @@ class ProduitController extends AbstractController
      /**
      * @Route("/produit/delete/{id}", name="delete_produit")
      */
-    public function delete(Produit $produit=null){ // methode pour supprimer un produit 
+    public function delete(Produit $produit=null){ 
         if($produit != null){
             $pdo = $this->getDoctrine()->getManager();
-            $pdo -> remove($produit); //Suppression;
+            $pdo -> remove($produit); 
             $pdo -> flush();
 
-            $this-> addFlash("success", "Produit supprimé"); //message flash comme les alert
+            $this-> addFlash("success", "Produit supprimé"); 
         }
         else{
             $this-> addFlash("danger", "Produit introuvable");
@@ -124,7 +122,7 @@ class ProduitController extends AbstractController
             unlink($this->getParameter('upload_dir') . $produit->getPhoto());
         }
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('produit');
     }
 }
 // "::"accéder aux membres static ou constant, ainsi qu'aux propriétés ou méthodes surchargées d'une classe.

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
+
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 
 /**
@@ -23,6 +23,7 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
      */
     private $nom;
 
@@ -33,11 +34,13 @@ class Produit
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull
      */
     private $quantite;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotNull
      */
     private $prix;
 

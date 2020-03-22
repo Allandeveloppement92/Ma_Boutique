@@ -53,9 +53,9 @@
     {% set quantite_panier = 0 %}
 
         {% for article in panier %}
-            {# {% if panier.etat == false %}   #}
+            
                 {% set total_panier = total_panier + (article.produit.prix * article.quantiteco) %}
-            {# {% endif %} #}
+           
         {% endfor %}
 
     <p style="font-size:20px;">Le montant du panier s'élève à  <span style="font-weight:bold; font-size: 25px;" >{{ total_panier }}€</span>.</p>

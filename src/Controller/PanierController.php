@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Panier;
 use App\Entity\Produit;
 use App\Form\PanierType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/panier", name="panier")
+     * @Route("/", name="home")
      */
     public function index()
     {
@@ -28,7 +30,7 @@ class PanierController extends AbstractController
       /**
      * @Route("/panier/delete/{id}", name="delete_produit_panier")
      */
-    public function delete(Panier $panier=null){ // methode pour supprimer un produit 
+    public function delete(Panier $panier=null){ 
         if($panier != null){
             $pdo = $this->getDoctrine()->getManager();
             $pdo -> remove($panier); 
@@ -40,6 +42,6 @@ class PanierController extends AbstractController
             $this-> addFlash("danger", "Produit introuvable");
         }
 
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('home');
     }
 }

@@ -4,9 +4,7 @@
 
 {% block body %}
 
-    
-
-    <h1>Listes des produits</h1>
+    <h1>Liste des produits</h1>
 
     <br/>
     
@@ -35,7 +33,7 @@
                         </td>
                         <td>{{ un_produit.quantite }}</td>
                         <td>{{ un_produit.prix }}€</td>
-                    </tr> <!--Afficher la liste-->
+                    </tr> 
                 {% endfor %}
             </tbody>
         </table>
@@ -48,5 +46,5 @@
 
     <h2>Ajouter un produit</h2>
     <br/>
-    {{ form(form_produit_new) }} <!--Afficher le formulaire du produit-->
+    {{ form(form_produit_new) }} 
 {% endblock %}

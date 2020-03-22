@@ -24,13 +24,13 @@ class ProduitType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k', //A retirer si les images bloquent
+                        'maxSize' => '1024k', 
                         'mimeTypes' => [
                             'image/jpg',
                             'image/jpeg',
                             'image/png',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document', //Merci de téléverser un document valide
+                        'mimeTypesMessage' => 'Merci de téléverser un document valide', 
                     ])
                 ],
             ])
