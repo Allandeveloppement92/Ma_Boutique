@@ -1,0 +1,40 @@
+panier:
+  titre: 'Accueil'
+  titre1: 'Panier'
+  titre2: 'Mes produits'
+  nom: 'Nom'
+  quantite: 'Quantité'
+  montant: 'Montant (prix par rapport à la quantité)'
+  produit: 'Ce produit'
+  supprimer: 'Supprimer'
+  vide: 'Votre panier est vide'
+  nb_produit: 'produit(s)'
+  titre3: 'Total TTC'
+  total: "Le prix total s'élève à "
+  page_accueil: 'Accueil'
+  page_produit: 'Nos produits'
+  
+produit: 
+  titre: 'Nos produits'
+  titre1: 'Liste des produits'
+  photo: 'Photo'
+  nom: 'Nom'
+  quantite: 'Quantité'
+  prix: 'Prix'
+  vide: 'Insérer un produit'
+  ajout: 'Ajouter un produit'
+  p_quantite: 'Quantité : '
+  p_prix: 'Prix : '
+  p_ajout: 'Ajouter au panier'
+  p_supprimer: 'Supprimer le produit'
+  
+file: 
+  
+Nom: 'Nom'
+Photo: 'Photo'
+Quantite: 'Quantité'
+Prix: 'Prix'
+Quantiteco: 'Quantité commandée'
+Ajouter: 'Ajouter'
+      
+  

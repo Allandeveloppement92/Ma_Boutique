@@ -9,12 +9,12 @@
     <br/>  
 
     <p> <img src="{{asset('/uploads/'~ produit.photo)}}" style="border-radius:20px;"> </p>
-    <p style="font-size:20px;"> Quantité : {{produit.quantite}} </p>
-    <p style="font-size:20px;"> Prix : {{produit.prix}}€ </p>
+    <p style="font-size:20px;"> {{ 'produit.p_quantite' |trans }} {{produit.quantite}} </p>
+    <p style="font-size:20px;"> {{ 'produit.p_prix' |trans }} {{produit.prix}}€ </p>
 
     <br/>
 
-    <h2>Ajouter au panier</h2>
+    <h2>{{ 'produit.p_ajout' |trans }}</h2>
 
     <br/>
 
@@ -22,7 +22,7 @@
     
     
 
-    <button  style="background-color:red ; border-radius:5px; "><a href="{{ path('delete_produit', {'id': produit.id}) }}" style="color:white; text-decoration:none;" >Supprimer le produit</a></button>
+    <button  style="background-color:red ; border-radius:5px; "><a href="{{ path('delete_produit', {'id': produit.id}) }}" style="color:white; text-decoration:none;" >{{ 'produit.p_supprimer' |trans }}</a></button>
     
     <br/>
     <br/>

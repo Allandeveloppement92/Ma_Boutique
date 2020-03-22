@@ -1,0 +1,39 @@
+panier:
+  titre: 'Home'
+  titre1: 'Basket'
+  titre2: 'My Products'
+  nom: 'Name'
+  quantite: 'Quantity'
+  montant: 'Price (price x quantity)'
+  produit: 'This product'
+  supprimer: 'Delate'
+  vide: 'Your basket is empty'
+  nb_produit: 'product(s)'
+  titre3: 'Total Price'
+  total: 'The total price gets up to'
+  page_accueil: 'Home'
+  page_produit: 'Our products'
+
+produit: 
+  titre: 'Our Products'
+  titre1: 'Products list'
+  photo: 'Picture'
+  nom: 'Name'
+  quantite: 'Quantity'
+  prix: 'Price'
+  vide: 'Insert a product'
+  ajout: 'Add a product'
+  p_quantite: 'Quantity : '
+  p_prix: 'Price : '
+  p_ajout: 'Add to Basket'
+  p_supprimer: 'Delate product'
+
+file: 
+
+Nom: 'Name'
+Photo: 'Picture'
+Quantite: 'Quantity'
+Prix: 'Price'
+Quantiteco: 'Quantity ordered'
+Ajouter: 'Add'
+    

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %} {{ 'panier.titre' |trans }} {% endblock %}
 
 {% block body %}
-    <h1>Panier</h1>
+    <h1>{{ 'panier.titre1' |trans }}</h1>
     <br/>
-    <h2>Mes Produits</h2>
+    <h2>{{ 'panier.titre2' |trans }}</h2>
     <br/>
 
     {% if panier is not empty %}
@@ -13,10 +13,10 @@
          <table class="table" class="container">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Quantité</th>
-                    <th>Montant (par rapport à la quantité)</th>
-                    <th>Ce produit</th>
+                    <th>{{ 'panier.nom' |trans }}</th>
+                    <th>{{ 'panier.quantite' |trans }}</th>
+                    <th>{{ 'panier.montant' |trans }}</th>
+                    <th>{{ 'panier.produit' |trans }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
                         <td>
                             <button  style="background-color:red ; border-radius:5px;">
                                 <a href="{{ path('delete_produit_panier', {'id': article.id}) }}" style="color:white; text-decoration:none;" >
-                                    Supprimer
+                                    {{ 'panier.supprimer' |trans }}
                                 </a>
                             </button>
                         </td>
@@ -37,17 +37,17 @@
             </tbody>
         </table> 
         {% else %} 
-        <p>Votre panier est vide</p>
+        <p>{{ 'panier.vide' |trans }}</p>
     {% endif %}
 
-    <span style=" background-color:#707173; color:white; font-weight:bold; border-radius:2px;"> {{panier | length}} produit(s) </span>
+    <span style=" background-color:#707173; color:white; font-weight:bold; border-radius:2px;"> {{panier | length}} {{ 'panier.nb_produit' |trans }} </span>
    
     <br/>
     <br/>
     <br/>
     <br/>
 
-    <h2>Total TTC</h2>
+    <h2>{{ 'panier.titre3' |trans }}</h2>
     
     {% set total_panier = 0 %} 
     {% set quantite_panier = 0 %}
@@ -58,7 +58,7 @@
            
         {% endfor %}
 
-    <p style="font-size:20px;">Le montant du panier s'élève à  <span style="font-weight:bold; font-size: 25px;" >{{ total_panier }}€</span>.</p>
+    <p style="font-size:20px;"> {{ 'panier.total' |trans }}  <span style="font-weight:bold; font-size: 25px;" >{{ total_panier }}€</span>.</p>
 
 {% endblock %}
 
