@@ -27,6 +27,25 @@ produit:
   p_prix: 'Prix : '
   p_ajout: 'Ajouter au panier'
   p_supprimer: 'Supprimer le produit'
+
+index:
+  titre: 'Bonjour'
+  titre2: 'Bienvenue sur Shopy Zone'
+  p10: 'Vous pouvez accéder à nos pages de '
+  p11: 'panier '
+  p12: 'et '
+  p13: 'produits '
+  p14: 'en cliquant sur '
+  p15: 'Panier '
+  p16: 'ou '
+  p17: 'Nos Produits '
+  p18: 'dans la barre de menu.'
+  p2: 'Ajoutez autant de produits que vous souhaitez avec le formulaire.'
+  p3: 'En cliquant sur le nom d'un produit, vous serez dirigé vers sa fiche.'
+  p4: 'Vous aurez donc la possibilité de le supprimer ou de l'ajouter au panier.'
+  p50: Bonne visite sur '
+  p51: 'Shopy Zone'
+  p6: 'L'équipe'
   
 file: 
   
