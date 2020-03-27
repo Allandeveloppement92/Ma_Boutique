@@ -11,7 +11,7 @@ panier:
   nb_produit: 'produit(s)'
   titre3: 'Total TTC'
   total: "Le prix total s'élève à "
-  page_accueil: 'Accueil'
+  page_accueil: 'Panier'
   page_produit: 'Nos produits'
   
 produit: 

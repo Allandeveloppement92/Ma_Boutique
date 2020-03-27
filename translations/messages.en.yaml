@@ -11,7 +11,7 @@ panier:
   nb_produit: 'product(s)'
   titre3: 'Total Price'
   total: 'The total price gets up to'
-  page_accueil: 'Home'
+  page_accueil: 'Panier'
   page_produit: 'Our products'
 
 produit: 
